@@ -84,7 +84,7 @@ SideNav has the following props:
 
 | Prop     | Default    | Description                                          |
 | --------- | ---------- | ---------------------------------------------------- |
-| className | null       | CSS `class` that is to be applied for styling the SideNav; if not specified, the default theme will be used (see [default-theme](https://github.com/ahauser31/react-side-nav/styles/default-theme.scss) for definitions ) |
+| className | null       | CSS `class` that is to be applied for styling the SideNav; if not specified, the default theme will be used (see [default-theme](https://github.com/ahauser31/react-side-nav/blob/master/styles/default-theme.scss) for definitions ) |
 | items | null | Nav menu tree object, see below for structure of this object |
 | linkComponent | null | React component used to render the leaves of the nav tree that contain actual navigation links; If no link component is passed to the SideNav, leaves will not render. See below for props passed to link component |
 | iconComponent | null | React component used to render the icons of the nav menu items; if no icon component is supplied, nav menu items will have no icons; See below for props passed to icon component |
@@ -133,7 +133,7 @@ const Icon = props => (<i className={classNames('fa', props.className)} />);
 
 ### Example
 
-A small sample application is included and can be found [here](https://github.com/ahauser31/react-side-nav/example).
+A small sample application is included and can be found [here](https://github.com/ahauser31/react-side-nav/tree/master/example).
 To run the sample, clone the repository, install the dependencies and run the example:
 
 ```bash
