@@ -1,5 +1,5 @@
 
-#react-side-nav &middot; [![Build Status](https://travis-ci.org/ahauser31/react-side-nav.svg?branch=master)](https://travis-ci.org/ahauser31/react-side-nav)
+#react-side-nav &middot; [![Build Status](https://travis-ci.org/ahauser31/react-side-nav.svg?branch=master)](https://travis-ci.org/ahauser31/react-side-nav) [![codecov](https://codecov.io/gh/ahauser31/react-side-nav/branch/master/graph/badge.svg)](https://codecov.io/gh/ahauser31/react-side-nav) 
 =======
 
 

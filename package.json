@@ -36,6 +36,9 @@
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
+  "engines": {
+    "node": "7.x.x"
+  },
   "dependencies": {
     "classnames": "^2.2.5"
   },
