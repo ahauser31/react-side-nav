@@ -8,10 +8,10 @@
     "url": "https://github.com/ahauser31/react-side-nav.git"
   },
   "scripts": {
-    "test": "jest",
+    "test-simple": "jest",
     "test-details": "jest --verbose",
     "test-watch": "jest --watch",
-    "coverage": "jest --coverage",
+    "test": "jest --coverage",
     "build": "webpack --config webpack.dist.config.js",
     "start": "NODE_ENV=development webpack-dev-server"
   },
