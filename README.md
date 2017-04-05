@@ -5,6 +5,8 @@ react-side-nav
 
 react-side-nav is a JavaScript react UI component that displays a navigation side bar. It supports custom styling, custom icons & chevrons and works with react-router. Add-on components are provided to support Font Awesome for the icons & chevrons.
 
+![img](https://cloud.githubusercontent.com/assets/8348199/24691668/8ac90524-1a07-11e7-8b7e-3fc57d923be2.png)
+
 ### Installation
 
 To get started with react-side-nav, simply install it with npm:
@@ -84,7 +86,7 @@ SideNav has the following props:
 
 | Prop     | Default    | Description                                          |
 | --------- | ---------- | ---------------------------------------------------- |
-| className | null       | CSS `class` that is to be applied for styling the SideNav; if not specified, the default theme will be used (see [default-theme](https://github.com/ahauser31/react-side-nav/blob/master/styles/default-theme.scss) for definitions ) |
+| className | null       | CSS `class` that is to be applied for styling the SideNav; if not specified, the default theme will be used (see [default-theme](/blob/master/styles/default-theme.scss) for definitions ) |
 | items | null | Nav menu tree object, see below for structure of this object |
 | linkComponent | null | React component used to render the leaves of the nav tree that contain actual navigation links; If no link component is passed to the SideNav, leaves will not render. See below for props passed to link component |
 | iconComponent | null | React component used to render the icons of the nav menu items; if no icon component is supplied, nav menu items will have no icons; See below for props passed to icon component |
@@ -133,7 +135,7 @@ const Icon = props => (<i className={classNames('fa', props.className)} />);
 
 ### Example
 
-A small sample application is included and can be found [here](https://github.com/ahauser31/react-side-nav/tree/master/example).
+A small sample application is included and can be found [here](/tree/master/example).
 To run the sample, clone the repository, install the dependencies and run the example:
 
 ```bash
