@@ -118,11 +118,11 @@ var SideNavItem = function SideNavItem(props) {
   return props.link ? _react2.default.createElement(
     'div',
     { className: (0, _classnames2.default)('side-nav-item', 'level-' + props.level, { active: props.active }) },
-    _react2.default.cloneElement(props.linkComponent, {
+    props.linkComponent ? _react2.default.cloneElement(props.linkComponent, {
       to: props.link,
       label: props.label,
       icon: props.icon ? props.icon + ' side-nav-icon' : null,
-      className: 'side-nav-item-link' })
+      className: 'side-nav-item-link' }) : null
   ) :
   // eslint-disable-next-line jsx-a11y/no-static-element-interactions
   _react2.default.createElement(
@@ -136,13 +136,15 @@ var SideNavItem = function SideNavItem(props) {
       { className: 'side-nav-item-title' },
       props.iconComponent && props.icon ? _react2.default.cloneElement(props.iconComponent, { className: (0, _classnames2.default)(props.iconComponent.props.className, 'side-nav-icon', props.icon) }) : null,
       props.label,
-      props.chevronComponent ? _react2.default.cloneElement(props.chevronComponent, { expanded: props.expanded || props.active,
-        className: (0, _classnames2.default)(props.chevronComponent.props.className, 'side-nav-chevron') }) : null
+      props.chevronComponent ? _react2.default.cloneElement(props.chevronComponent, {
+        expanded: props.expanded || props.active,
+        className: (0, _classnames2.default)(props.chevronComponent.props.className, 'side-nav-chevron')
+      }) : null
     ),
     _react2.default.createElement(
       'div',
       { className: 'side-nav-item-children' },
-      props.items.map(function (item) {
+      props.items && Array.isArray(props.items) ? props.items.map(function (item) {
         return _react2.default.createElement(SideNavItem, _extends({
           key: item.id,
           level: props.level + 1,
@@ -151,7 +153,7 @@ var SideNavItem = function SideNavItem(props) {
           iconComponent: props.iconComponent,
           onItemClick: props.onItemClick
         }, item));
-      })
+      }) : null
     )
   );
 };
@@ -161,7 +163,7 @@ SideNavItem.propTypes = {
   id: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
   onItemClick: _react.PropTypes.func.isRequired,
   level: _react.PropTypes.number.isRequired,
-  linkComponent: _react.PropTypes.element.isRequired,
+  linkComponent: _react.PropTypes.element,
   link: _react.PropTypes.string,
   icon: _react.PropTypes.string,
   active: _react.PropTypes.bool,
@@ -178,7 +180,8 @@ SideNavItem.defaultProps = {
   expanded: false,
   items: null,
   chevronComponent: null,
-  iconComponent: null
+  iconComponent: null,
+  linkComponent: null
 };
 
 exports.default = SideNavItem;
@@ -547,7 +550,7 @@ var Chevron = exports.Chevron = function Chevron(props) {
 
 Chevron.propTypes = {
   className: _react.PropTypes.string,
-  expanded: _react.PropTypes.bool.isRequired
+  expanded: _react.PropTypes.bool
 };
 
 Chevron.defaultProps = {
@@ -577,7 +580,6 @@ Icon.defaultProps = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SideNav = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -612,7 +614,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * SideNav
  */
-var SideNav = exports.SideNav = function (_Component) {
+var SideNav = function (_Component) {
   _inherits(SideNav, _Component);
 
   function SideNav() {
@@ -638,9 +640,6 @@ var SideNav = exports.SideNav = function (_Component) {
       };
     }, _this.toggleItem = function (id) {
       var items = (0, _sideNavHelpers.toggleExpandedItemWithId)(id, _this.state.items);
-      _this.setState({ items: items });
-    }, _this.activateItem = function (link) {
-      var items = (0, _sideNavHelpers.activateItemWithLink)(link, _this.state.items);
       _this.setState({ items: items });
     }, _this.renderItems = function () {
       return _this.state.items.map(function (item) {
@@ -668,7 +667,7 @@ var SideNav = exports.SideNav = function (_Component) {
 
     // Create Item tree with additional properties
     value: function componentWillMount() {
-      var items = (0, _sideNavHelpers.createItemTree)(this.props.items);
+      var items = this.props.items ? (0, _sideNavHelpers.createItemTree)(this.props.items) : [];
       this.setState({ items: items });
     }
   }, {
@@ -685,7 +684,7 @@ var SideNav = exports.SideNav = function (_Component) {
 }(_react.Component);
 
 SideNav.propTypes = {
-  linkComponent: _react.PropTypes.element.isRequired,
+  linkComponent: _react.PropTypes.element,
   items: _react.PropTypes.arrayOf(_react.PropTypes.object),
   activeItem: _react.PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   className: _react.PropTypes.string,
@@ -698,7 +697,8 @@ SideNav.defaultProps = {
   activeItem: null,
   className: null,
   chevronComponent: null,
-  iconComponent: null
+  iconComponent: null,
+  linkComponent: null
 };
 
 exports.default = SideNav;
@@ -731,7 +731,7 @@ var collapseTree = exports.collapseTree = function collapseTree(items) {
 
 var deactivateTree = exports.deactivateTree = function deactivateTree(items) {
   return items.map(function (item) {
-    return item.items ? _extends({}, item, { active: false, items: collapseTree(item.items) }) : _extends({}, item, { active: false });
+    return item.items ? _extends({}, item, { active: false, items: deactivateTree(item.items) }) : _extends({}, item, { active: false });
   });
 };
 
@@ -782,19 +782,19 @@ var switchItem = function switchItem(activate, items, id) {
 };
 
 var toggleExpandedItemWithId = exports.toggleExpandedItemWithId = function toggleExpandedItemWithId(id, items) {
-  return switchItem(false, items, id, null, null);
+  return switchItem(false, items, id);
 };
 
 var toggleExpandedItemWithLink = exports.toggleExpandedItemWithLink = function toggleExpandedItemWithLink(link, items) {
-  return switchItem(false, items, null, link, null);
+  return switchItem(false, items, null, link);
 };
 
 var activateItemWithId = exports.activateItemWithId = function activateItemWithId(id, items) {
-  return switchItem(true, items, id, null, null);
+  return switchItem(true, items, id);
 };
 
 var activateItemWithLink = exports.activateItemWithLink = function activateItemWithLink(link, items) {
-  return switchItem(true, items, null, link, null);
+  return switchItem(true, items, null, link);
 };
 
 /***/ }),
@@ -2724,7 +2724,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".side-menu.default-theme {\n  background-color: #2f4050; }\n  .side-menu.default-theme .side-menu-item-title, .side-menu.default-theme .side-menu-item-link {\n    display: block;\n    font-size: 0.8125rem;\n    font-weight: 600;\n    color: #a7b1c2;\n    text-decoration: none; }\n    .side-menu.default-theme .side-menu-item-title:active, .side-menu.default-theme .side-menu-item-title:focus, .side-menu.default-theme .side-menu-item-title:hover, .side-menu.default-theme .side-menu-item-link:active, .side-menu.default-theme .side-menu-item-link:focus, .side-menu.default-theme .side-menu-item-link:hover {\n      color: #a7b1c2;\n      text-decoration: none; }\n    .side-menu.default-theme .side-menu-item-title:hover, .side-menu.default-theme .side-menu-item-link:hover {\n      color: white;\n      background-color: #293846; }\n  .side-menu.default-theme .side-menu-item {\n    position: relative; }\n    .side-menu.default-theme .side-menu-item.active, .side-menu.default-theme .side-menu-item.expanded {\n      background-color: #293846; }\n      .side-menu.default-theme .side-menu-item.active.level-0 > .side-menu-item-title, .side-menu.default-theme .side-menu-item.active.level-0 > .side-menu-item-link, .side-menu.default-theme .side-menu-item.active.level-1 > .side-menu-item-title, .side-menu.default-theme .side-menu-item.active.level-1 > .side-menu-item-link, .side-menu.default-theme .side-menu-item.active.level-2 > .side-menu-item-title, .side-menu.default-theme .side-menu-item.active.level-2 > .side-menu-item-link, .side-menu.default-theme .side-menu-item.expanded.level-0 > .side-menu-item-title, .side-menu.default-theme .side-menu-item.expanded.level-0 > .side-menu-item-link, .side-menu.default-theme .side-menu-item.expanded.level-1 > .side-menu-item-title, .side-menu.default-theme .side-menu-item.expanded.level-1 > .side-menu-item-link, .side-menu.default-theme .side-menu-item.expanded.level-2 > .side-menu-item-title, .side-menu.default-theme .side-menu-item.expanded.level-2 > .side-menu-item-link {\n        color: white; }\n  .side-menu.default-theme .side-menu-item.level-0 .side-menu-item-title, .side-menu.default-theme .side-menu-item.level-0 .side-menu-item-link {\n    padding: 0.9375rem 1.25rem 0.9375rem 1.5625rem; }\n  .side-menu.default-theme .side-menu-item.level-1 .side-menu-item-title, .side-menu.default-theme .side-menu-item.level-1 .side-menu-item-link {\n    padding: 0.4375rem 0.625rem 0.4375rem 3.125rem; }\n  .side-menu.default-theme .side-menu-item.level-2 .side-menu-item-title, .side-menu.default-theme .side-menu-item.level-2 .side-menu-item-link {\n    padding: 0.4375rem 0.625rem 0.4375rem 4.6875rem; }\n  .side-menu.default-theme .side-menu-chevron {\n    font-size: 0.5625rem;\n    display: inline-block;\n    position: absolute;\n    right: 1.25rem;\n    top: 1.125rem; }\n  .side-menu.default-theme .side-menu-icon {\n    margin-right: 0.625rem; }\n", ""]);
+exports.push([module.i, ".side-nav.default-theme{background-color:#2f4050}.side-nav.default-theme .side-nav-item-link,.side-nav.default-theme .side-nav-item-title{display:block;font-size:.8125rem;font-weight:600;color:#a7b1c2;text-decoration:none}.side-nav.default-theme .side-nav-item-link:active,.side-nav.default-theme .side-nav-item-link:focus,.side-nav.default-theme .side-nav-item-link:hover,.side-nav.default-theme .side-nav-item-title:active,.side-nav.default-theme .side-nav-item-title:focus,.side-nav.default-theme .side-nav-item-title:hover{color:#a7b1c2;text-decoration:none}.side-nav.default-theme .side-nav-item-link:hover,.side-nav.default-theme .side-nav-item-title:hover{color:#fff;background-color:#293846}.side-nav.default-theme .side-nav-item{position:relative}.side-nav.default-theme .side-nav-item.active,.side-nav.default-theme .side-nav-item.expanded{background-color:#293846}.side-nav.default-theme .side-nav-item.active.level-0>.side-nav-item-link,.side-nav.default-theme .side-nav-item.active.level-0>.side-nav-item-title,.side-nav.default-theme .side-nav-item.active.level-1>.side-nav-item-link,.side-nav.default-theme .side-nav-item.active.level-1>.side-nav-item-title,.side-nav.default-theme .side-nav-item.active.level-2>.side-nav-item-link,.side-nav.default-theme .side-nav-item.active.level-2>.side-nav-item-title,.side-nav.default-theme .side-nav-item.expanded.level-0>.side-nav-item-link,.side-nav.default-theme .side-nav-item.expanded.level-0>.side-nav-item-title,.side-nav.default-theme .side-nav-item.expanded.level-1>.side-nav-item-link,.side-nav.default-theme .side-nav-item.expanded.level-1>.side-nav-item-title,.side-nav.default-theme .side-nav-item.expanded.level-2>.side-nav-item-link,.side-nav.default-theme .side-nav-item.expanded.level-2>.side-nav-item-title{color:#fff}.side-nav.default-theme .side-nav-item.level-0 .side-nav-item-link,.side-nav.default-theme .side-nav-item.level-0 .side-nav-item-title{padding:.9375rem 1.25rem .9375rem 1.5625rem}.side-nav.default-theme .side-nav-item.level-1 .side-nav-item-link,.side-nav.default-theme .side-nav-item.level-1 .side-nav-item-title{padding:.4375rem .625rem .4375rem 3.125rem}.side-nav.default-theme .side-nav-item.level-2 .side-nav-item-link,.side-nav.default-theme .side-nav-item.level-2 .side-nav-item-title{padding:.4375rem .625rem .4375rem 4.6875rem}.side-nav.default-theme .side-nav-chevron{font-size:.5625rem;display:inline-block;position:absolute;right:1.25rem;top:1.125rem}.side-nav.default-theme .side-nav-icon{margin-right:.625rem}", ""]);
 
 // exports
 
@@ -2738,7 +2738,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".side-menu .side-menu-item {\n  cursor: pointer; }\n  .side-menu .side-menu-item .side-menu-item-children {\n    max-height: 9999px;\n    overflow: hidden;\n    transition: max-height 1s ease-in-out; }\n  .side-menu .side-menu-item.collapsed .side-menu-item-children {\n    max-height: 0;\n    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1) -0.15s; }\n  .side-menu .side-menu-item.active .side-menu-item-children {\n    max-height: 9999px;\n    transition: none; }\n", ""]);
+exports.push([module.i, ".side-nav .side-nav-item{cursor:pointer}.side-nav .side-nav-item .side-nav-item-children{max-height:9999px;overflow:hidden;-webkit-transition:max-height 1s ease-in-out;transition:max-height 1s ease-in-out}.side-nav .side-nav-item.collapsed .side-nav-item-children{max-height:0;-webkit-transition:max-height .3s cubic-bezier(0,1,0,1) -.15s;transition:max-height .3s cubic-bezier(0,1,0,1) -.15s}.side-nav .side-nav-item.active .side-nav-item-children{max-height:9999px;-webkit-transition:none;transition:none}", ""]);
 
 // exports
 
@@ -2860,8 +2860,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./default-theme.scss", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./default-theme.scss");
+		module.hot.accept("!!../node_modules/css-loader/index.js?importLoaders=1!../node_modules/postcss-loader/index.js!../node_modules/sass-loader/lib/loader.js!./default-theme.scss", function() {
+			var newContent = require("!!../node_modules/css-loader/index.js?importLoaders=1!../node_modules/postcss-loader/index.js!../node_modules/sass-loader/lib/loader.js!./default-theme.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -2886,8 +2886,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./side-menu.scss", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./side-menu.scss");
+		module.hot.accept("!!../node_modules/css-loader/index.js?importLoaders=1!../node_modules/postcss-loader/index.js!../node_modules/sass-loader/lib/loader.js!./side-nav.scss", function() {
+			var newContent = require("!!../node_modules/css-loader/index.js?importLoaders=1!../node_modules/postcss-loader/index.js!../node_modules/sass-loader/lib/loader.js!./side-nav.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
