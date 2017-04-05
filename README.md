@@ -144,3 +144,9 @@ cd react-side-nav
 npm i
 npm start
 ```
+
+### Credits
+
+This small component was inspired by [Banomaster](https://github.com/banomaster) and his very nice component [react-sidemenu](https://github.com/banomaster/react-sidemenu) that unfortunately proved unsuited to what I had in mind;
+To improve my own skills and as a programming exercise, I wrote SideNav instead of forking & fiddling with SideMenu.
+Thank you @Banomaster for the excellent work!
