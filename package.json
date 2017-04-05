@@ -1,0 +1,79 @@
+{
+  "name": "react-side-nav",
+  "version": "0.0.1",
+  "description": "A side bar react component that supports custom styles, icons and works with react-router",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahauser31/react-side-nav.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "test-details": "jest --verbose",
+    "test-watch": "jest --watch",
+    "coverage": "jest --coverage",
+    "build": "webpack --config webpack.dist.config.js",
+    "start": "NODE_ENV=development webpack-dev-server"
+  },
+  "keywords": [
+    "react",
+    "nav bar",
+    "side bar",
+    "navigation"
+  ],
+  "author": "Andreas Hauser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahauser31/react-side-nav/issues"
+  },
+  "homepage": "https://github.com/ahauser31/react-side-nav",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
+  "dependencies": {
+    "classnames": "^2.2.5"
+  },
+  "peerDependencies": {
+    "react": "^0.14 || ^15.0",
+    "react-dom": "^0.14 || ^15.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
+    "babel-jest": "^19.0.0",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "css-loader": "^0.27.3",
+    "cssnano": "^3.10.0",
+    "enzyme": "^2.7.1",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "jest": "^19.0.2",
+    "node-sass": "^4.5.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^1.3.3",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "regenerator-runtime": "^0.10.3",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  }
+}

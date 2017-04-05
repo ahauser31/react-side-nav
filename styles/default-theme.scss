@@ -1,0 +1,74 @@
+// Colors
+$color-navbar-background: #2f4050;
+$color-navbar-background-hover: #293846;
+$color-navbar-text: #a7b1c2;
+$color-navbar-text-hover: white;
+
+
+// Styling
+.side-nav.default-theme {
+  background-color: $color-navbar-background;
+
+  .side-nav-item-title, .side-nav-item-link {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $color-navbar-text;
+    text-decoration: none;
+
+    &:active, &:focus, &:hover {
+      color: $color-navbar-text;
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: $color-navbar-text-hover;
+      background-color: $color-navbar-background-hover;
+    }
+  }
+
+  .side-nav-item {
+    position: relative;
+
+    &.active, &.expanded {
+      background-color: $color-navbar-background-hover;
+
+      &.level-0, &.level-1, &.level-2 {
+        > .side-nav-item-title, > .side-nav-item-link {
+          color: $color-navbar-text-hover;
+        }
+      }
+
+    }
+  }
+
+  .side-nav-item.level-0 {
+      .side-nav-item-title, .side-nav-item-link {
+        padding: 0.9375rem 1.25rem 0.9375rem 1.5625rem;
+    }
+  }
+
+  .side-nav-item.level-1 {
+      .side-nav-item-title, .side-nav-item-link {
+        padding: 0.4375rem 0.625rem 0.4375rem 3.125rem;
+    }
+  }
+
+  .side-nav-item.level-2 {
+      .side-nav-item-title, .side-nav-item-link {
+        padding: 0.4375rem 0.625rem 0.4375rem 4.6875rem;
+    }
+  }
+
+  .side-nav-chevron {
+    font-size: 0.5625rem;
+    display: inline-block;
+    position: absolute;
+    right: 1.25rem;
+    top: 1.125rem;
+  }
+
+  .side-nav-icon {
+    margin-right: 0.625rem;
+  }
+}

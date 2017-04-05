@@ -1,0 +1,31 @@
+.side-nav {
+
+  .side-nav-item {
+    cursor: pointer;
+
+    .side-nav-item-children {
+      max-height: 9999px;
+      overflow: hidden;
+      transition: max-height 1s ease-in-out;
+    }
+
+    &.collapsed {
+
+      .side-nav-item-children {
+        max-height: 0;
+        transition: max-height 0.3s cubic-bezier(0, 1, 0, 1) -.15s;
+        //transition: max-height .6s cubic-bezier(0, 1, 0, 1) -.15s;
+      }
+    }
+
+    &.active {
+
+      .side-nav-item-children {
+        max-height: 9999px;
+        transition: none;
+      }
+    }
+
+  }
+
+}

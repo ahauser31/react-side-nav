@@ -1,0 +1,24 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "jest": true,
+  },
+  "rules": {
+    # We use _ to define private variables and methods in clases
+    "no-underscore-dangle": 0,
+    # This seems to be buggy we don't want eslint to check this
+    "import/no-extraneous-dependencies": 0,
+    # This is a depricated rule. So we turned off it.
+    "react/require-extension": 0,
+    # Accept JSX in js files
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx"] }],
+    # Configure arrow function style
+    "arrow-body-style": [2, "as-needed", {"requireReturnForObjectLiteral": true}],
+    # No anonymous functions allowed, but accept ES6 syntax
+    "func-names": [2, "as-needed"],
+    # Max-length should really be 150 on modern screens and ignore comments in any case
+    "max-len": [2, {"code": 150, "ignoreComments": true}],
+  },
+}
