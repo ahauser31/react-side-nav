@@ -17,9 +17,12 @@
   },
   "keywords": [
     "react",
+    "react-component"
     "nav bar",
-    "side bar",
-    "navigation"
+    "side nav",
+    "navigation",
+    "side navigation"
+    "menu"
   ],
   "author": "Andreas Hauser <andreas_hauser@gmx.de>",
   "license": "MIT",

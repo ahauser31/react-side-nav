@@ -1,6 +1,5 @@
 
 # react-side-nav &middot; [![Build Status](https://travis-ci.org/ahauser31/react-side-nav.svg?branch=master)](https://travis-ci.org/ahauser31/react-side-nav) [![codecov](https://codecov.io/gh/ahauser31/react-side-nav/branch/master/graph/badge.svg)](https://codecov.io/gh/ahauser31/react-side-nav)
-=======
 
 
 react-side-nav is a JavaScript react UI component that displays a navigation side bar. It supports custom styling, custom icons & chevrons and works with react-router. Add-on components are provided to support Font Awesome for the icons & chevrons.
@@ -59,7 +58,7 @@ const NavLink = props => (<Link to={props.to} {...props}><i className={`fa ${pro
 Alternatively, for non react-router links:
 
 ```js
-const Link = props => (<a href={props.to} {...props}><i className={`fa ${props.icon}`} />{props.label}</a>);
+const NavLink = props => (<a href={props.to} {...props}><i className={`fa ${props.icon}`} />{props.label}</a>);
 ```
 
 With the nav menu tree and the link component defined, the side nav is ready for use:
@@ -67,7 +66,7 @@ With the nav menu tree and the link component defined, the side nav is ready for
 ```js
 <SideNav
   items={menuItems}
-  linkComponent={Link}
+  linkComponent={NavLink}
   chevronComponent={Chevron}
   iconComponent={Icon}
 />

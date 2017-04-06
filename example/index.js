@@ -64,15 +64,15 @@ const menuItems = [
   },
 ];
 
-const Link = props => (<a href={props.to} {...props}><i className={classNames('fa', props.icon)} />{props.label}</a>);
+const NavLink = props => (<a href={props.to} {...props}><i className={classNames('fa', props.icon)} />{props.label}</a>);
 
-Link.propTypes = {
+NavLink.propTypes = {
   to: PropTypes.string,
   icon: PropTypes.string,
   label: PropTypes.string,
 };
 
-Link.defaultProps = {
+NavLink.defaultProps = {
   to: '#',
   icon: '',
   label: '',
@@ -95,7 +95,7 @@ class Testcontainer extends Component {
         <SideNav
           items={menuItems}
           activeItem={this.state.activate}
-          linkComponent={Link}
+          linkComponent={NavLink}
           chevronComponent={Chevron}
           iconComponent={Icon}
         />
