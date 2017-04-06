@@ -118,7 +118,7 @@ var SideNavItem = function SideNavItem(props) {
   return props.link ? _react2.default.createElement(
     'div',
     { className: (0, _classnames2.default)('side-nav-item', 'level-' + props.level, { active: props.active }) },
-    props.linkComponent ? _react2.default.cloneElement(props.linkComponent, {
+    props.linkComponent ? _react2.default.createElement(props.linkComponent, {
       to: props.link,
       label: props.label,
       icon: props.icon ? props.icon + ' side-nav-icon' : null,
@@ -134,11 +134,11 @@ var SideNavItem = function SideNavItem(props) {
     _react2.default.createElement(
       'div',
       { className: 'side-nav-item-title' },
-      props.iconComponent && props.icon ? _react2.default.cloneElement(props.iconComponent, { className: (0, _classnames2.default)(props.iconComponent.props.className, 'side-nav-icon', props.icon) }) : null,
+      props.iconComponent && props.icon ? _react2.default.createElement(props.iconComponent, { className: (0, _classnames2.default)('side-nav-icon', props.icon) }) : null,
       props.label,
-      props.chevronComponent ? _react2.default.cloneElement(props.chevronComponent, {
+      props.chevronComponent ? _react2.default.createElement(props.chevronComponent, {
         expanded: props.expanded || props.active,
-        className: (0, _classnames2.default)(props.chevronComponent.props.className, 'side-nav-chevron')
+        className: 'side-nav-chevron'
       }) : null
     ),
     _react2.default.createElement(
@@ -163,14 +163,14 @@ SideNavItem.propTypes = {
   id: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
   onItemClick: _react.PropTypes.func.isRequired,
   level: _react.PropTypes.number.isRequired,
-  linkComponent: _react.PropTypes.element,
+  linkComponent: _react.PropTypes.func,
   link: _react.PropTypes.string,
   icon: _react.PropTypes.string,
   active: _react.PropTypes.bool,
   expanded: _react.PropTypes.bool,
   items: _react.PropTypes.arrayOf(_react.PropTypes.object),
-  chevronComponent: _react.PropTypes.element,
-  iconComponent: _react.PropTypes.element
+  chevronComponent: _react.PropTypes.func,
+  iconComponent: _react.PropTypes.func
 };
 
 SideNavItem.defaultProps = {
@@ -684,12 +684,12 @@ var SideNav = function (_Component) {
 }(_react.Component);
 
 SideNav.propTypes = {
-  linkComponent: _react.PropTypes.element,
+  linkComponent: _react.PropTypes.func,
   items: _react.PropTypes.arrayOf(_react.PropTypes.object),
   activeItem: _react.PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   className: _react.PropTypes.string,
-  chevronComponent: _react.PropTypes.element,
-  iconComponent: _react.PropTypes.element
+  chevronComponent: _react.PropTypes.func,
+  iconComponent: _react.PropTypes.func
 };
 
 SideNav.defaultProps = {

@@ -95,9 +95,9 @@ class Testcontainer extends Component {
         <SideNav
           items={menuItems}
           activeItem={this.state.activate}
-          linkComponent={<Link />}
-          chevronComponent={<Chevron />}
-          iconComponent={<Icon />}
+          linkComponent={Link}
+          chevronComponent={Chevron}
+          iconComponent={Icon}
         />
         <button onClick={() => { this.clickActivate(); }}>Click to activate the item with the link &quot;/item41/a&quot;</button>
       </div>

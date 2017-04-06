@@ -24,7 +24,7 @@ describe('<SideNavItem />', () => {
       onItemClick={() => (() => {})}
       level={0}
       link="/test/"
-      linkComponent={<TestComponent />}
+      linkComponent={TestComponent}
     />);
     expect(result.find('TestComponent').prop('label')).toEqual('TestLinkItem');
     expect(result.find('TestComponent').prop('icon')).toEqual(null);
@@ -37,7 +37,7 @@ describe('<SideNavItem />', () => {
       onItemClick={() => (() => {})}
       level={0}
       link="/test/"
-      linkComponent={<TestComponent />}
+      linkComponent={TestComponent}
       icon="someIcon"
     />);
     expect(result.find('TestComponent').prop('icon')).toEqual('someIcon side-nav-icon');
@@ -59,7 +59,7 @@ describe('<SideNavItem />', () => {
       id="item1"
       onItemClick={() => (() => {})}
       level={3}
-      iconComponent={<TestComponent />}
+      iconComponent={TestComponent}
       icon="test-icon"
     />);
     expect(result.find('div.side-nav-item-title').find('TestComponent').prop('className')).toEqual('side-nav-icon test-icon');
@@ -71,7 +71,7 @@ describe('<SideNavItem />', () => {
       id="item1"
       onItemClick={() => (() => {})}
       level={3}
-      chevronComponent={<TestComponent />}
+      chevronComponent={TestComponent}
       expanded={false}
     />);
     expect(result.find('div.side-nav-item-title').find('TestComponent').prop('className')).toEqual('side-nav-chevron');

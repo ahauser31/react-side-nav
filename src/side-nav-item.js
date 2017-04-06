@@ -9,7 +9,7 @@ const SideNavItem = props => (
     (
       <div className={classNames('side-nav-item', `level-${props.level}`, { active: props.active })} >
         { props.linkComponent
-          ? React.cloneElement(props.linkComponent, {
+          ? React.createElement(props.linkComponent, {
             to: props.link,
             label: props.label,
             icon: props.icon ? `${props.icon} side-nav-icon` : null,
@@ -30,15 +30,15 @@ const SideNavItem = props => (
       >
         <div className="side-nav-item-title">
           { props.iconComponent && props.icon
-            ? React.cloneElement(props.iconComponent, { className: classNames(props.iconComponent.props.className, 'side-nav-icon', props.icon) })
+            ? React.createElement(props.iconComponent, { className: classNames('side-nav-icon', props.icon) })
             : null
           }
           {props.label}
           {props.chevronComponent
-            ? React.cloneElement(props.chevronComponent,
+            ? React.createElement(props.chevronComponent,
               {
                 expanded: props.expanded || props.active,
-                className: classNames(props.chevronComponent.props.className, 'side-nav-chevron'),
+                className: 'side-nav-chevron',
               })
             : null
           }
@@ -68,14 +68,14 @@ SideNavItem.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onItemClick: PropTypes.func.isRequired,
   level: PropTypes.number.isRequired,
-  linkComponent: PropTypes.element,
+  linkComponent: PropTypes.func,
   link: PropTypes.string,
   icon: PropTypes.string,
   active: PropTypes.bool,
   expanded: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.object),
-  chevronComponent: PropTypes.element,
-  iconComponent: PropTypes.element,
+  chevronComponent: PropTypes.func,
+  iconComponent: PropTypes.func,
 };
 
 SideNavItem.defaultProps = {

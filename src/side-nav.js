@@ -60,12 +60,12 @@ class SideNav extends Component {
 }
 
 SideNav.propTypes = {
-  linkComponent: PropTypes.element,
+  linkComponent: PropTypes.func,
   items: PropTypes.arrayOf(PropTypes.object),
   activeItem: PropTypes.string,  // eslint-disable-line react/no-unused-prop-types
   className: PropTypes.string,
-  chevronComponent: PropTypes.element,
-  iconComponent: PropTypes.element,
+  chevronComponent: PropTypes.func,
+  iconComponent: PropTypes.func,
 };
 
 SideNav.defaultProps = {

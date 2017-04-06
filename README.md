@@ -1,5 +1,5 @@
 
-#react-side-nav &middot; [![Build Status](https://travis-ci.org/ahauser31/react-side-nav.svg?branch=master)](https://travis-ci.org/ahauser31/react-side-nav) [![codecov](https://codecov.io/gh/ahauser31/react-side-nav/branch/master/graph/badge.svg)](https://codecov.io/gh/ahauser31/react-side-nav) 
+# react-side-nav &middot; [![Build Status](https://travis-ci.org/ahauser31/react-side-nav.svg?branch=master)](https://travis-ci.org/ahauser31/react-side-nav) [![codecov](https://codecov.io/gh/ahauser31/react-side-nav/branch/master/graph/badge.svg)](https://codecov.io/gh/ahauser31/react-side-nav)
 =======
 
 
@@ -67,9 +67,9 @@ With the nav menu tree and the link component defined, the side nav is ready for
 ```js
 <SideNav
   items={menuItems}
-  linkComponent={<Link />}
-  chevronComponent={<Chevron />}
-  iconComponent={<Icon />}
+  linkComponent={Link}
+  chevronComponent={Chevron}
+  iconComponent={Icon}
 />
 ```
 
