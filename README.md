@@ -6,6 +6,10 @@ react-side-nav is a JavaScript react UI component that displays a navigation sid
 
 ![img](https://cloud.githubusercontent.com/assets/8348199/24691668/8ac90524-1a07-11e7-8b7e-3fc57d923be2.png)
 
+## New version
+
+react-side-nav was updated to the newest dependencies using webpack 4 and react 16. These changes may cause code to break for some users still using the old versions
+
 ### Installation
 
 To get started with react-side-nav, simply install it with npm:

@@ -2,25 +2,34 @@
     ./webpack.config.js
 */
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './example/index.js',
+  mode: process.env.NODE_ENV,
   output: {
     path: path.resolve('example'),
-    publicPath: '/js/',
+    // publicPath: '/js/',
     filename: 'bundle.js',
   },
   devServer: {
     contentBase: path.resolve('example'),
   },
   module: {
-    loaders: [
+    rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.scss$/, use: ExtractTextPlugin.extract({ use: [{ loader: 'css-loader?importLoaders=1' }, { loader: 'postcss-loader' }, { loader: 'sass-loader' }], fallback: 'style-loader' }) },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
   plugins: [
-    new ExtractTextPlugin('main.css'),
+    new MiniCssExtractPlugin({ filename: 'main.css' }),
   ],
 };

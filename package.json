@@ -1,6 +1,6 @@
 {
   "name": "react-side-nav",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A side bar react component that supports custom styles, icons and works with react-router",
   "main": "./dist/index.js",
   "repository": {
@@ -13,7 +13,7 @@
     "test-watch": "jest --watch",
     "test": "jest --coverage",
     "build": "webpack --config webpack.dist.config.js",
-    "start": "NODE_ENV=development webpack-dev-server"
+    "start": "NODE_ENV=development webpack-serve webpack.config.js"
   },
   "keywords": [
     "react",
@@ -39,49 +39,67 @@
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     }
   },
+  "postcss": {
+    "plugins": {
+      "postcss-preset-env": {
+        "stage": 0
+      },
+      "autoprefixer": {},
+      "cssnano": {}
+    }
+  },
+  "serve": {
+    "content": "./example/",
+    "hot": true,
+    "http2": false
+  },
   "engines": {
-    "node": "7.x.x"
+    "node": "10.x.x"
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.1"
   },
   "peerDependencies": {
-    "react": "^0.14 || ^15.0",
-    "react-dom": "^0.14 || ^15.0"
+    "react": "^16.0",
+    "react-dom": "^16.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.7",
-    "babel": "^6.23.0",
-    "babel-cli": "^6.24.0",
-    "babel-core": "^6.23.1",
-    "babel-eslint": "^7.1.1",
-    "babel-jest": "^19.0.0",
-    "babel-loader": "^6.4.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "babel-preset-stage-2": "^6.22.0",
-    "codecov": "^2.1.0",
-    "css-loader": "^0.27.3",
-    "cssnano": "^3.10.0",
-    "enzyme": "^2.7.1",
-    "eslint": "^3.17.1",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.0",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "jest": "^19.0.2",
-    "node-sass": "^4.5.0",
+    "autoprefixer": "^8.4.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^22.4.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "browserslist": "^3.2.7",
+    "codecov": "^3.0.2",
+    "css-loader": "^0.28.11",
+    "cssnano": "^4.0.0-rc.2",
+    "enzyme": "^3.3.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.1",
+    "jest": "^22.4.3",
+    "mini-css-extract-plugin": "^0.4.0",
+    "node-sass": "^4.9.0",
     "path": "^0.12.7",
-    "postcss-loader": "^1.3.3",
-    "react": "^15.4.2",
-    "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.5",
+    "postcss-preset-env": "^5.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "regenerator-runtime": "^0.10.3",
-    "sass-loader": "^6.0.3",
-    "style-loader": "^0.13.2",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.2",
+    "webpack-cli": "^2.1.3",
+    "webpack-serve": "^0.3.2"
   }
 }

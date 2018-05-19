@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SideNavItem from './side-nav-item';
 import { createItemTree, toggleExpandedItemWithId, activateItemWithLink } from './side-nav-helpers';
@@ -41,7 +42,7 @@ class SideNav extends Component {
 
   renderItems = () => (
     this.state.items.map(item =>
-      <SideNavItem
+      (<SideNavItem
         key={item.id}
         level={0}
         linkComponent={this.props.linkComponent}
@@ -49,7 +50,7 @@ class SideNav extends Component {
         iconComponent={this.props.iconComponent}
         onItemClick={this.onItemClick}
         {...item}
-      />)
+      />))
   );
 
   render = () => (
@@ -62,7 +63,7 @@ class SideNav extends Component {
 SideNav.propTypes = {
   linkComponent: PropTypes.func,
   items: PropTypes.arrayOf(PropTypes.object),
-  activeItem: PropTypes.string,  // eslint-disable-line react/no-unused-prop-types
+  activeItem: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   className: PropTypes.string,
   chevronComponent: PropTypes.func,
   iconComponent: PropTypes.func,

@@ -2,9 +2,11 @@
     ./webpack.config.js
 */
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.js',
+  mode: process.env.NODE_ENV,
   output: {
     path: path.resolve('dist'),
     filename: 'index.js',
@@ -13,11 +15,22 @@ module.exports = {
     umdNamedDefine: true,
   },
   module: {
-    loaders: [
+    rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.scss$/, use: [{ loader: 'style-loader' }, { loader: 'css-loader?importLoaders=1' }, { loader: 'postcss-loader' }, { loader: 'sass-loader' }] },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({ filename: 'main.css' }),
+  ],
   externals: {
     react: {
       root: 'React',

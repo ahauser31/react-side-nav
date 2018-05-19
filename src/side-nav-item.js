@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 /**
@@ -13,13 +14,14 @@ const SideNavItem = props => (
             to: props.link,
             label: props.label,
             icon: props.icon ? `${props.icon} side-nav-icon` : null,
-            className: 'side-nav-item-link' })
+            className: 'side-nav-item-link',
+          })
           : null
         }
       </div>
     ) :
     (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
       <div
         className={classNames(
           'side-nav-item',
@@ -35,11 +37,13 @@ const SideNavItem = props => (
           }
           {props.label}
           {props.chevronComponent
-            ? React.createElement(props.chevronComponent,
+            ? React.createElement(
+              props.chevronComponent,
               {
                 expanded: props.expanded || props.active,
                 className: 'side-nav-chevron',
-              })
+              },
+            )
             : null
           }
         </div>
@@ -47,7 +51,7 @@ const SideNavItem = props => (
         <div className="side-nav-item-children">
           { props.items && Array.isArray(props.items)
             ? props.items.map(item =>
-              <SideNavItem
+              (<SideNavItem
                 key={item.id}
                 level={props.level + 1}
                 linkComponent={props.linkComponent}
@@ -55,7 +59,7 @@ const SideNavItem = props => (
                 iconComponent={props.iconComponent}
                 onItemClick={props.onItemClick}
                 {...item}
-              />)
+              />))
             : null
           }
         </div>
