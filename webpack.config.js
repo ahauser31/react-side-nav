@@ -19,7 +19,17 @@ module.exports = {
     rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       {
+        test: /side-nav\.scss$/,
+        use: [
+          { loader: 'style-loader', options: { hmr: true } },
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
+      {
         test: /\.scss$/,
+        exclude: /side-nav\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { importLoaders: 1 } },
@@ -30,6 +40,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'main.css' }),
+    new MiniCssExtractPlugin({ filename: 'themes.css' }),
   ],
 };

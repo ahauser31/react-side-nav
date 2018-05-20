@@ -8,7 +8,8 @@ react-side-nav is a JavaScript react UI component that displays a navigation sid
 
 ## New version
 
-react-side-nav was updated to the newest dependencies using webpack 4 and react 16. These changes may cause code to break for some users still using the old versions
+react-side-nav was updated to the newest dependencies using webpack 4 and react 16. These changes may cause code to break for some users still using the old versions.
+The default theme is no longer included in the js bundle and has to be included separately (see style guide below)
 
 ### Installation
 
@@ -89,7 +90,7 @@ SideNav has the following props:
 
 | Prop     | Default    | Description                                          |
 | --------- | ---------- | ---------------------------------------------------- |
-| className | null       | CSS `class` that is to be applied for styling the SideNav; if not specified, the default theme will be used (see [default-theme](/blob/master/styles/default-theme.scss) for definitions ) |
+| className | null       | CSS `class` that is to be applied for styling the SideNav; if not specified, the default theme will be used (see style guide below ) |
 | items | null | Nav menu tree object, see below for structure of this object |
 | linkComponent | null | React component used to render the leaves of the nav tree that contain actual navigation links; If no link component is passed to the SideNav, leaves will not render. See below for props passed to link component |
 | iconComponent | null | React component used to render the icons of the nav menu items; if no icon component is supplied, nav menu items will have no icons; See below for props passed to icon component |
@@ -136,9 +137,17 @@ Default implementation of the icon component:
 const Icon = props => (<i className={classNames('fa', props.className)} />);
 ```
 
+### Style guide
+
+The component has a few styles inlined that are required for it to work; the default theme is no longer inlined from version 1.0.0 onwards to reduce the size of the component. If you want to use the default theme, please require / import it in your application:
+```js
+import './node_modules/react-side-nav/dist/themes.css';
+```
+Please also see [default-theme](/styles/default-theme.scss) for the default style definitions.
+
 ### Example
 
-A small sample application is included and can be found [here](/tree/master/example).
+A small sample application is included and can be found [here](/example).
 To run the sample, clone the repository, install the dependencies and run the example:
 
 ```bash
