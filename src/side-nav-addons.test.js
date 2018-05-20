@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import TestRenderer from 'react-test-renderer';
 import { Chevron, Icon } from './side-nav-addons';
 
 describe('Chevron', () => {
@@ -11,9 +12,9 @@ describe('Chevron', () => {
   });
 
   test('should render as a font awesome chevron down icon if expanded = true', () => {
-    const result = shallow(<Chevron expanded />);
-    expect(result.instance().props.expanded).toEqual(true);
-    expect(result.hasClass('fa-chevron-down')).toEqual(true);
+    const result = TestRenderer.create(<Chevron expanded />).root;
+    expect(result.props.expanded).toEqual(true);
+    expect(result.findByType('i').props.className).toEqual('fa fa-chevron-down');
   });
 
   test('should include custom classnames', () => {

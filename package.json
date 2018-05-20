@@ -1,6 +1,6 @@
 {
   "name": "react-side-nav",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A side bar react component that supports custom styles, icons and works with react-router",
   "main": "./dist/index.js",
   "repository": {
@@ -12,7 +12,7 @@
     "test-details": "jest --verbose",
     "test-watch": "jest --watch",
     "test": "jest --coverage",
-    "build": "webpack --config webpack.dist.config.js",
+    "build": "NODE_ENV=production webpack --config webpack.dist.config.js",
     "start": "NODE_ENV=development webpack-serve webpack.config.js"
   },
   "keywords": [
@@ -37,7 +37,8 @@
     ],
     "moduleNameMapper": {
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setup_test.js"
   },
   "postcss": {
     "plugins": {
@@ -80,13 +81,14 @@
     "css-loader": "^0.28.11",
     "cssnano": "^4.0.0-rc.2",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.1",
-    "jest": "^22.4.3",
+    "jest": "^22.4.4",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
     "path": "^0.12.7",
@@ -95,6 +97,7 @@
     "postcss-preset-env": "^5.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-test-renderer": "^16.3.2",
     "regenerator-runtime": "^0.10.3",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
