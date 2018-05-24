@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import SideNavItem from './side-nav-item';
-import { createItemTree, toggleExpandedItemWithId, activateItemWithLink } from './side-nav-helpers';
+import { createItemTree, toggleExpandedItemWithId, activateItemWithLink, animateItemWithId } from './side-nav-helpers';
 import './../styles/side-nav.scss';
 import './../styles/default-theme.scss';
 
@@ -12,7 +12,7 @@ import './../styles/default-theme.scss';
 class SideNav extends Component {
   state = {
     items: [],
-    activeItemLink: null,
+    activeItemLink: null, // eslint-disable-line react/no-unused-state
   };
 
   // Create Item tree with additional properties
@@ -24,7 +24,7 @@ class SideNav extends Component {
   componentWillReceiveProps(newProps) {
     if (newProps && newProps.activeItem) {
       const items = activateItemWithLink(newProps.activeItem, this.state.items);
-      this.setState({ activeItemLink: newProps.activeItem, items });
+      this.setState({ activeItemLink: newProps.activeItem, items }); // eslint-disable-line react/no-unused-state
     }
   }
 
@@ -32,13 +32,16 @@ class SideNav extends Component {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
     e.preventDefault();
-    this.toggleItem(id);
+    const items = this.toggleItem(id);
+    this.animateItem(id, items);
   });
 
-  toggleItem = (id) => {
-    const items = toggleExpandedItemWithId(id, this.state.items);
+  animateItem = (id, oldItems) => {
+    const items = animateItemWithId(id, (typeof oldItems !== 'undefined') ? oldItems : this.state.items, this.animateItem);
     this.setState({ items });
-  };
+  }
+
+  toggleItem = id => toggleExpandedItemWithId(id, this.state.items);
 
   renderItems = () => (
     this.state.items.map(item =>

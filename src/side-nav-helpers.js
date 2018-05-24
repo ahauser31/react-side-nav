@@ -1,7 +1,11 @@
 export const createItemTree = (input, level = 0) => (
   input.map(item => (item.items ?
-    { expanded: false, active: false, level, ...item, items: createItemTree(item.items, (level + 1)) } :
-    { expanded: false, active: false, level, ...item }))
+    {
+      expanded: false, active: false, level, animationState: 0, ...item, items: createItemTree(item.items, (level + 1)),
+    } :
+    {
+      expanded: false, active: false, level, animationState: 0, ...item,
+    }))
 );
 
 export const collapseTree = items => (
@@ -61,3 +65,13 @@ export const toggleExpandedItemWithLink = (link, items) => (switchItem(false, it
 export const activateItemWithId = (id, items) => (switchItem(true, items, id));
 
 export const activateItemWithLink = (link, items) => (switchItem(true, items, null, link));
+
+export const animateItemWithId = (id, items, fn) => (items.map((item) => {
+  if ((item.id === id) && (typeof item.animationTime !== 'undefined')) {
+    const newItem = { ...item };
+    newItem.animationState = newItem.animationState === 2 ? 0 : newItem.animationState + 1;
+    if (newItem.animationState) setTimeout(() => fn(id), item.animationTime);
+    return newItem;
+  }
+  return item;
+}));

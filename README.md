@@ -9,7 +9,8 @@ react-side-nav is a JavaScript react UI component that displays a navigation sid
 ## New version
 
 react-side-nav was updated to the newest dependencies using webpack 4 and react 16. These changes may cause code to break for some users still using the old versions.
-The default theme is no longer included in the js bundle and has to be included separately (see style guide below)
+The default theme is no longer included in the js bundle and has to be included separately (see style guide below).
+New animation function is included to animate the click on a parent node.
 
 ### Installation
 
@@ -83,6 +84,7 @@ All SideNav menu items have an `expanded` and an `active` state; the `expanded` 
 
 * Better documentation
 * Allow direct definition of the nav menu by the user by placing SideNavItem instances as children of the SideNav instance (currently only JSON definition possible)
+* Include example as well as more options for animation function
 
 ### Developers guide
 
@@ -106,6 +108,7 @@ SideNav items are defined using a JavaScript array; this array contains `item` o
 | label        | String           | Label to be displayed by the nav menu for the corresponding entry |
 | icon         | String           | (optional) CSS `class` passed to the icon component (if provided) to render an icon for the corresponding entry |
 | link         | String           | (only leaf entries) Link used for routing and passed to the Link component; depending on the application, this can be a full URL, a URL fragment or a hashtag anchor-link |
+| animationTime| Number           | (only branch entries) Time (in ms) for running the click animation; if animation is not used, do not define this field|
 | items        | Array<item>      | (only for branch entries) Array of children `item` elements |
 
 
@@ -136,6 +139,12 @@ Default implementation of the icon component:
 ```js
 const Icon = props => (<i className={classNames('fa', props.className)} />);
 ```
+
+
+For the animation function:
+
+If a branch item has the property "animationTime" defined, a click on it will not only expand / collapse it, but also add the class "animateIn" to the node; after "animationTime" milliseconds, the class "animateOut" will be added as well.
+After another "animationTime" milliseconds both classes "animateIn" and "animateOut" will be removed from the node
 
 ### Style guide
 

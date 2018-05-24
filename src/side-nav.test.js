@@ -8,6 +8,7 @@ describe('<SideNav />', () => {
       id: 1,
       label: 'Item 1',
       icon: 'fa-battery-half',
+      animationTime: 250,
       items: [
         {
           id: 11,
@@ -122,5 +123,17 @@ describe('<SideNav />', () => {
       nativeEvent: { stopImmediatePropagation: () => {} },
     });
     expect(result.state('items')[3].items[0].expanded).toEqual(true);
+  });
+
+  test('should animate a parent item that was clicked on', () => {
+    const result = shallow(<SideNav items={menuItems} />);
+    expect(result.state('items')[0].animationState).toEqual(0);
+    const onItemClick = result.childAt(0).prop('onItemClick'); // Get the onClickHandler generating function from any child
+    onItemClick(result.state('items')[0].id)({
+      stopPropagation: () => {},
+      preventDefault: () => {},
+      nativeEvent: { stopImmediatePropagation: () => {} },
+    });
+    expect(result.state('items')[0].animationState).toEqual(1);
   });
 });

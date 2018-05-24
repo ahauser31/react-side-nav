@@ -30,7 +30,7 @@ const SideNavItem = props => (
         )}
         onClick={props.onItemClick(props.id)}
       >
-        <div className="side-nav-item-title">
+        <div className={classNames('side-nav-item-title', { animateIn: props.animationState >= 1 }, { animateOut: props.animationState === 2 })}>
           { props.iconComponent && props.icon
             ? React.createElement(props.iconComponent, { className: classNames('side-nav-icon', props.icon) })
             : null
@@ -80,6 +80,7 @@ SideNavItem.propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   chevronComponent: PropTypes.func,
   iconComponent: PropTypes.func,
+  animationState: PropTypes.number,
 };
 
 SideNavItem.defaultProps = {
@@ -91,6 +92,7 @@ SideNavItem.defaultProps = {
   chevronComponent: null,
   iconComponent: null,
   linkComponent: null,
+  animationState: 0,
 };
 
 export default SideNavItem;

@@ -9,6 +9,7 @@ const menuItems = [
     id: 1,
     label: 'Item 1',
     icon: 'fa-battery-half',
+    animationTime: 1000,
     items: [
       {
         id: 11,

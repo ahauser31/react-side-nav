@@ -1,6 +1,6 @@
 {
   "name": "react-side-nav",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A side bar react component that supports custom styles, icons and works with react-router",
   "main": "./dist/index.js",
   "repository": {
