@@ -8,19 +8,19 @@ const menuItems = [
   {
     id: 1,
     label: 'Item 1',
-    icon: 'fa-battery-half',
+    icon: 'fas fa-battery-half',
     animationTime: 1000,
     items: [
       {
         id: 11,
         label: 'Item 1.1',
-        icon: 'fa-car',
+        icon: 'fas fa-car',
         link: '/item11',
       },
       {
         id: 12,
         label: 'Item 1.2',
-        icon: 'fa-bullhorn',
+        icon: 'fas fa-bullhorn',
         link: '/item12',
       },
     ],
@@ -28,35 +28,35 @@ const menuItems = [
   {
     id: 2,
     label: 'Item 2',
-    icon: 'fa-camera',
+    icon: 'fas fa-camera',
     link: '/item2',
   },
   {
     id: 3,
     label: 'Item 3',
-    icon: 'fa-check-square',
+    icon: 'fas fa-check-square',
     link: '/item3',
   },
   {
     id: 4,
     label: 'Item 4',
-    icon: 'fa-database',
+    icon: 'fas fa-database',
     items: [
       {
         id: 41,
         label: 'Item 4.1',
-        icon: 'fa-paw',
+        icon: 'fas fa-paw',
         items: [
           {
             id: 411,
             label: 'Item 4.1.a',
-            icon: 'fa-random',
+            icon: 'fas fa-random',
             link: '/item41/a',
           },
           {
             id: 412,
             label: 'Item 4.1.b',
-            icon: 'fa-sign-in',
+            icon: 'fas fa-sign-in',
             link: '/item41/b',
           },
         ],
@@ -64,13 +64,13 @@ const menuItems = [
       {
         id: 42,
         label: 'Item 4.2',
-        icon: 'fa-user',
+        icon: 'fas fa-user',
         link: '/item42',
       },
       {
         id: 43,
         label: 'Item 4.3',
-        icon: 'fa-gear',
+        icon: 'fas fa-gear',
         link: '/item43',
       },
     ],

@@ -8,9 +8,10 @@ react-side-nav is a JavaScript react UI component that displays a navigation sid
 
 ## New version
 
-react-side-nav was updated to the newest dependencies using webpack 4 and react 16. These changes may cause code to break for some users still using the old versions.
-The default theme is no longer included in the js bundle and has to be included separately (see style guide below).
-New animation function is included to animate the click on a parent node.
+* react-side-nav was updated to the newest dependencies using webpack 4 and react 16 (These changes may cause code to break for some users still using the old versions)
+* The default theme is no longer included in the js bundle and has to be included separately (see style guide below)
+* New animation function is included to animate the click on a parent node
+* Update for FontAwesome 5 - Icon properties must now specify icon style, Chevron add-on uses solid style
 
 ### Installation
 
@@ -37,16 +38,16 @@ menu tree can be found below. See the following array definition to illustrate t
 const menuItems = [
   { id: 1,
     label: 'Item 1',
-    icon: 'fa-battery-half',
+    icon: 'fas fa-battery-half',
     items: [
       { id: 11,
         label: 'Item 1.1',
-        icon: 'fa-car',
+        icon: 'fas fa-car',
         link: '/item11',
       },
       { id: 12,
         label: 'Item 1.2',
-        icon: 'fa-bullhorn',
+        icon: 'fas fa-bullhorn',
         link: '/item12',
       },
     ],

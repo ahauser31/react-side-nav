@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export const Chevron = props => (
-  <i
-    className={classNames('fa', props.className, { 'fa-chevron-left': !props.expanded, 'fa-chevron-down': props.expanded })}
-  />
+  <i className={classNames('fas', props.className, { 'fa-chevron-left': !props.expanded, 'fa-chevron-down': props.expanded })} />
 );
 
 Chevron.propTypes = {
@@ -18,7 +16,7 @@ Chevron.defaultProps = {
   expanded: false,
 };
 
-export const Icon = props => (<i className={classNames('fa', props.className)} />);
+export const Icon = props => (<i className={classNames(props.className)} />);
 
 Icon.propTypes = {
   className: PropTypes.string,
