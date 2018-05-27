@@ -105,6 +105,12 @@ describe('<SideNav />', () => {
     expect(result.state('items')[3].items[0].items[1].active).toEqual(true);
   });
 
+  test('should active the item with a link passed using the activeItem prop when mounting', () => {
+    const result = shallow(<SideNav items={menuItems} activeItem="/item41/b" />);
+    expect(result.state('activeItemLink')).toEqual('/item41/b');
+    expect(result.state('items')[3].items[0].items[1].active).toEqual(true);
+  });
+
   test('should correctly change a prop that is not the activeItem', () => {
     const result = shallow(<SideNav items={menuItems} className="custom1" />);
     expect(result.prop('className')).toEqual('side-nav custom1');

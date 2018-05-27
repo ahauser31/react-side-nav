@@ -17,8 +17,9 @@ class SideNav extends Component {
 
   // Create Item tree with additional properties
   componentWillMount() {
-    const items = this.props.items ? createItemTree(this.props.items) : [];
-    this.setState({ items });
+    let items = this.props.items ? createItemTree(this.props.items) : [];
+    if (this.props.activeItem && this.props.items) items = activateItemWithLink(this.props.activeItem, items);
+    this.setState({ activeItemLink: this.props.activeItem, items }); // eslint-disable-line react/no-unused-state
   }
 
   componentWillReceiveProps(newProps) {

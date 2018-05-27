@@ -12,6 +12,7 @@ react-side-nav is a JavaScript react UI component that displays a navigation sid
 * The default theme is no longer included in the js bundle and has to be included separately (see style guide below)
 * New animation function is included to animate the click on a parent node
 * Update for FontAwesome 5 - Icon properties must now specify icon style, Chevron add-on uses solid style
+* Fixed bug that caused a side nav that gets a activeItem prop passed in to not activate that item when mounting
 
 ### Installation
 
